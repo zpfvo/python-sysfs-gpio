@@ -91,14 +91,14 @@ class Pin(object):
         @type  edge: int
         @param edge: The edge transition that triggers callback,
                      enumerated by C{Edge}
-        @type active_low: int
+        @type active_low: int|bool
         @param active_low: Indicator of whether this pin uses inverted
                            logic for HIGH-LOW transitions.
         """
         self._number = number
         self._direction = direction
         self._callback  = callback
-        self._active_low = active_low
+        self._active_low = int(active_low)
 
         self._fd = open(self._sysfs_gpio_value_path(), 'r+')
 
